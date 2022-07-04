@@ -6,6 +6,7 @@ export default {
       novo_livro: " ",
       novo_autor: "",
       novo_editora: "",
+      novo_categoria:"",
       jogadores: [
         {
           id: "442e6fe2-e800-11ec-8fea-0242ac120002",
@@ -66,6 +67,17 @@ export default {
       <input type="text" placeholder="Nome" v-model="novo_autor" />
       <input type="text" placeholder="Nome" v-model="novo_editora" />
       <button @click="salvar">Salvar</button>
+    </div>
+    <div>
+        <select class="form-select" id="form" aria-label="Default select example">
+        <option selected>Categorias</option>
+        <option value="2">Terror</option>
+        <option value="4">Ação</option>
+        <option value="5">Fantasia</option>
+        <option value="1">Romance</option>
+        <option value="6">Misterio</option>
+        <option value="7">Autobiografia</option>
+        </select>
     </div>
     <div class="list-jogadores">
       <table>

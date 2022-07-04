@@ -56,7 +56,7 @@
 </template>
 <style scooped>
 .titulop h2 {
-  padding-top: 20px;
+  padding-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@ html {
 
 .card-container.card {
   width: 350px;
-  padding: 40px 40px;
+  padding: 30px 30px;
 }
 
 .btn {
@@ -88,7 +88,7 @@ html {
 .card {
   background-color: #f7f7f7;
   /* just in case there no content*/
-  padding: 20px 25px 30px;
+  padding: 10px 15px 50px;
   margin: 0 auto 25px;
   margin-top: 50px;
   /* shadows and rounded borders */

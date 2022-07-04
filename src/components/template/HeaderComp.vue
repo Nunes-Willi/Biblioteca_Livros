@@ -19,6 +19,10 @@
         <li><RouterLink to="/Au">Autores</RouterLink></li>
       </ul>
     </div>
+     <div>
+      <input class="pesquisar" type="text" placeholder="Pesquisar">
+      <button class="pesquisa">Pesquisar</button>
+    </div>
     <div class="Perfil">
       <RouterLink to="/Perfil"
         ><img src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
@@ -51,6 +55,19 @@ header span {
   width: 50px;
 }
 .Perfil {
-  margin-left: 1000px;
+  margin-left: 640px;
+}
+.pesquisar{
+  padding-right: 90px;
+  margin-left: 100px;
+  font-weight: bold;
+    border: 1px solid;
+    border-radius: 10px;
+}
+.pesquisa{
+  margin-left: 10px;
+  font-weight: bold;
+    border: 1px solid;
+    border-radius: 10px;
 }
 </style>
