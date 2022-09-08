@@ -1,50 +1,34 @@
 <script>
-import { v4 as uuid } from "uuid";
-export default {
+import axios from "axios";
+import CategoriaApi from "@/Api/Categoria.js";
+const categoriaApi = new CategoriaApi ();
+
+export default{
+  
   data() {
-    return {
-      novo_categoria: "",
-      novo_sinopse: "",
-      jogadores: [
-        {
-          id: "442e6fe2-e800-11ec-8fea-0242ac120002",
-          categoria: "Romance",
-          sinopse:"...",
-        },
-        {
-          id: "5116842e-e800-11ec-8fea-0242ac120002",
-          categoria: "Ação",
-           sinopse:"...",
-        },
-        {
-          id: "5b745d2e-e800-11ec-8fea-0242ac120002",
-          categoria: "Terror",
-          sinopse :"...",
-        },
-        {
-          id: "6043b8ae-e800-11ec-8fea-0242ac120002",
-          categoria: "Misterio",
-          sinopse:"...",
-        },
-      ],
+    return { 
+      categoria: {},
+      categorias: [],
     };
   },
+  async created(){
+    const categoria = await axios.get("http://localhost:4000/categories");  
+  },
+
   methods: {
-    salvar() {
-      const id = uuid();
-      this.jogadores.push({
-        id: id,
-        categoria: this.novo_categoria,
-        sinopse: this.novo_sinopse
-      });
+    async salvar() {
+      const categoria = {
+        nome: this.categoria,
+      };
+      const categoria_criado = await axios.post("http://localhost:4000/categories", categoria);
+      this.categorias.push(categoria_criado.data);
+      this.categoria = "";
     },
 
-    excluir(jogador) {
-      const indice = this.jogadores.indexOf(jogador);
-      this.jogadores.splice(indice, 1);
-    },
-    alerta() {
-      alert("ok");
+    async excluir(categoria) {
+      await axios.delete('http://localhost:4000/categories/$ (categoria.id)')
+      const indice = this.categorias.indexOf(categoria);
+      this.categorias.splice(indice, 1);
     },
   },
 };
@@ -56,9 +40,8 @@ export default {
       <h2>Categoria</h2>
     </div>
     <div class="form-input">
-      <input type="text" placeholder="Nome" v-model="novo_categoria" />
-       <input type="text" placeholder="Nome" v-model="novo_sinopse" />
-      <button @click="salvar">Salvar</button>
+      <input type="text" placeholder="Categoria" v-model="categoria.nome" @keyup.enter="salvar" />
+      <button @click="salvar">Adicionar</button>
     </div>
     <div class="list-jogadores">
       <table>
@@ -66,15 +49,12 @@ export default {
           <tr>
             <th>ID</th>
             <th>Categoria</th>
-             <th>Sinopse</th>
-            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="livro in jogadores" :key="livro.id">
+          <tr v-for="livro in categorias" :key="livro.id">
             <td>{{ livro.id }}</td>
-            <td>{{ livro.categoria }}</td>
-            <td>{{ livro.sinopse}}</td>
+            <td>{{ livro.nome }}</td>
             <td>
               <button @click="alerta">Editar</button>
               <button @click="excluir">excluir</button>
